@@ -1,0 +1,7 @@
+<h1>Status: <%= @order.status %></h1>
+
+<%= form_for @order, url: create_prescription_orders_path do |f| %>
+	<%= f.text_field :prescription_id %>
+	
+	<%= f.submit %>
+<% end %>

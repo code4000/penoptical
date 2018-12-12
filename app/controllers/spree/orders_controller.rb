@@ -85,16 +85,97 @@ module Spree
       puts "!!!!!!!!!!!!!!!!!!!!!!!"
       @order = Order.find(params[:id])
       puts @order.inspect
-      # @vision
     end
 
-    def update_vision_type
-      # get your order wiht the inpout from the form in previous methos
-      #try to save it   
-      # if it doesn't save, go back and render previous form
-      # if does save, update to next status and then redirect to next stage mehtoid   
+    def create_vision_type
+    #   # get your order with the input from the form in previous methods
+    #   # try to save it   
+    #   # if it doesn't save, go back and render previous form
+    #   # if does save, update to next status and then redirect to next stage method
 
+      @order = current_order
 
+      if @order.save(order_params)
+        @order.update_attribute(:status, 'lens')
+
+        redirect_to add_lens_type_orders_path(id: @order.id)
+      else
+        render 'new_vision_type'
+      end
+
+    end
+
+    def add_lens_type
+      @order = Order.find(params[:id])
+
+      puts "!!!!!!!!!!!!!!!!!!!!!"
+      puts params.inspect
+      puts "!!!!!!!!!!!!!!!!!!!!!!!"
+      puts @order.inspect
+      puts "!!!!!!!!!!!!!!!!!!!!!!!"
+    
+    end
+
+    def create_lens_type
+      @order = current_order
+
+      if @order.save(order_params)
+        @order.update_attribute(:status, 'package')
+
+        redirect_to add_package_orders_path(id: @order.id)
+      else
+        render 'new_lens_type'
+      end
+    
+    end
+
+    def add_package
+      
+
+      @order = Order.find(params[:id])
+
+      puts "!!!!!!!!!!!!!!!!!!!!!"
+      puts params.inspect
+      puts "!!!!!!!!!!!!!!!!!!!!!!!"
+      puts @order.inspect
+      puts "!!!!!!!!!!!!!!!!!!!!!!!"
+    
+    end
+
+    def create_package
+      @order = current_order
+
+      if @order.save(order_params)
+        @order.update_attribute(:status, 'prescription')
+
+        redirect_to add_prescription_orders_path(id: @order.id)
+      else
+        render 'new_lens_type'
+      end
+    
+    end
+
+    def add_prescription
+      @order = Order.find(params[:id])
+
+      puts "!!!!!!!!!!!!!!!!!!!!!"
+      puts params.inspect
+      puts "!!!!!!!!!!!!!!!!!!!!!!!"
+      puts @order.inspect
+      puts "!!!!!!!!!!!!!!!!!!!!!!!"
+    end
+
+    def create_prescription
+      @order = current_order
+
+      if @order.save(order_params)
+        @order.update_attribute(:status, 'finished')
+
+        redirect_to cart_path
+      else
+        render 'add_prescription'
+      end
+    
     end
 
     def populate_redirect
@@ -107,8 +188,7 @@ module Spree
         authorize! :update, @order, cookies.signed[:guest_token]
         @order.empty!
       end
-
-      redirect_to spree.cart_path
+        redirect_to spree.cart_path
     end
 
     def accurate_title

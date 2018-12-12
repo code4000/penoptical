@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_161634) do
+ActiveRecord::Schema.define(version: 2018_12_12_112528) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -312,6 +312,10 @@ ActiveRecord::Schema.define(version: 2018_12_11_161634) do
     t.string "approver_name"
     t.boolean "frontend_viewable", default: true, null: false
     t.string "status"
+    t.integer "vision_id"
+    t.integer "lens_id"
+    t.integer "package_id"
+    t.integer "prescription_id"
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["completed_at"], name: "index_spree_orders_on_completed_at"
