@@ -80,102 +80,122 @@ module Spree
     end
 
     def add_vision_type
-      puts "!!!!!!!!!!!!!!!!!!!!!"
-      puts params.inspect
-      puts "!!!!!!!!!!!!!!!!!!!!!!!"
-      @order = Order.find(params[:id])
-      puts @order.inspect
+      @order = current_order
     end
 
     def create_vision_type
-    #   # get your order with the input from the form in previous methods
-    #   # try to save it   
-    #   # if it doesn't save, go back and render previous form
-    #   # if does save, update to next status and then redirect to next stage method
+    @order = current_order
 
-      @order = current_order
-
-      if @order.save(order_params)
+      if @order.update(order_params)
         @order.update_attribute(:status, 'lens')
-
         redirect_to add_lens_type_orders_path(id: @order.id)
       else
-        render 'new_vision_type'
+        render 'add_vision_type'
       end
+    end
 
+    def edit_vision_type
+      @order= current_order
+    end
+
+    def update_vision_type
+      @order = current_order
+
+      if @order.update(order_params)
+        redirect_to cart_path
+      else
+        render 'edit_vision_type'
+      end
     end
 
     def add_lens_type
-      @order = Order.find(params[:id])
-
-      puts "!!!!!!!!!!!!!!!!!!!!!"
-      puts params.inspect
-      puts "!!!!!!!!!!!!!!!!!!!!!!!"
-      puts @order.inspect
-      puts "!!!!!!!!!!!!!!!!!!!!!!!"
-    
+      @order = current_order
     end
 
     def create_lens_type
       @order = current_order
 
-      if @order.save(order_params)
+      if @order.update(order_params)
         @order.update_attribute(:status, 'package')
 
         redirect_to add_package_orders_path(id: @order.id)
       else
-        render 'new_lens_type'
+        render 'add_lens_type'
+      end 
+    end
+
+    def edit_lens_type
+      @order= current_order
+    end
+
+    def update_lens_type
+      @order = current_order
+
+      if @order.update(order_params)
+        redirect_to cart_path
+      else
+        render 'edit_lens_type'
       end
-    
     end
 
     def add_package
-      
-
-      @order = Order.find(params[:id])
-
-      puts "!!!!!!!!!!!!!!!!!!!!!"
-      puts params.inspect
-      puts "!!!!!!!!!!!!!!!!!!!!!!!"
-      puts @order.inspect
-      puts "!!!!!!!!!!!!!!!!!!!!!!!"
-    
+      @order = current_order 
     end
 
     def create_package
       @order = current_order
 
-      if @order.save(order_params)
+      if @order.update(order_params)
         @order.update_attribute(:status, 'prescription')
 
         redirect_to add_prescription_orders_path(id: @order.id)
       else
-        render 'new_lens_type'
+        render 'add_package'
+      end    
+    end
+
+    def edit_package
+      @order= current_order
+    end
+
+    def update_package
+      @order = current_order
+
+      if @order.update(order_params)
+        redirect_to cart_path
+      else
+        render 'edit_lens_type'
       end
-    
     end
 
     def add_prescription
-      @order = Order.find(params[:id])
-
-      puts "!!!!!!!!!!!!!!!!!!!!!"
-      puts params.inspect
-      puts "!!!!!!!!!!!!!!!!!!!!!!!"
-      puts @order.inspect
-      puts "!!!!!!!!!!!!!!!!!!!!!!!"
+      @order = current_order
     end
 
     def create_prescription
       @order = current_order
 
-      if @order.save(order_params)
+      if @order.update(order_params)
         @order.update_attribute(:status, 'finished')
 
-        redirect_to cart_path
+        redirect_to cart_path(id: @order.id)
       else
         render 'add_prescription'
       end
-    
+    end
+
+    def edit_prescription
+      @order= current_order
+    end
+
+    def update_prescription
+      @order = current_order
+
+      if @order.update(order_params)
+        redirect_to cart_path
+      else
+        render 'edit_prescription'
+      end
     end
 
     def populate_redirect
@@ -207,11 +227,13 @@ module Spree
 
     def order_params
       if params[:order]
-        params[:order].permit(*permitted_order_attributes)
+        params.require(:order).permit(:vision_id,:lens_id,:package_id,:prescription_id, 
+                                        :address_attributes=>[:id, :firstname, :lastname, :first_name, :last_name, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone, :state_name, :country_iso, :alternative_phone, :company, {:country=>[:iso, :name, :iso3, :iso_name], :state=>[:name, :abbr]}])
       else
         {}
       end
     end
+
 
     def assign_order
       @order = current_order

@@ -2,6 +2,7 @@
 # See http://docs.solidus.io/Spree/AppConfiguration.html for details
 
 Spree.config do |config|
+  
   # Core:
 
   # Default currency for new sites
@@ -59,3 +60,5 @@ Spree::Api::Config.configure do |config|
 end
 
 Spree.user_class = "Spree::LegacyUser"
+
+

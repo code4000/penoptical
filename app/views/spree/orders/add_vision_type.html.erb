@@ -1,8 +1,5 @@
 
 <h1>Status: <%= @order.status %></h1>
 
-<%= form_for @order, url: create_vision_type_orders_path do |f| %>
-	<%= f.text_field :vision_id %>
-	
-	<%= f.submit %>
-<% end %>
+<%= render 'add_vision_type' %>
+

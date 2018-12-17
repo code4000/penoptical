@@ -9,15 +9,23 @@ Rails.application.routes.draw do
   	resources :orders do
   		get :add_vision_type, on: :collection
       patch :create_vision_type, on: :collection
+      get :edit_vision_type, on: :collection
+      patch :update_vision_type, on: :collection
 
       get :add_lens_type, on: :collection
       patch :create_lens_type, on: :collection
+      get :edit_lens_type, on: :collection
+      patch :update_lens_type, on: :collection
 
       get :add_package, on: :collection
       patch :create_package, on: :collection
+      get :edit_package, on: :collection
+      patch :update_package, on: :collection
 
       get :add_prescription, on: :collection
       patch :create_prescription, on: :collection
+      get :edit_prescription, on: :collection
+      patch :update_prescription, on: :collection
   	end
   end
 

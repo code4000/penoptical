@@ -18,7 +18,11 @@
       <% end %>
       <span class="line-item-description" data-hook="line_item_description">
         <%= line_item_description_text(line_item.description) %>
-        <p><%= @order.status %></p>
+      
+        <p><strong>Vision: </strong><%= @order.vision_id %> || <%= link_to 'Edit Vision type', edit_vision_type_orders_path %></p>
+        <p><strong>Lens: </strong><%= @order.lens_id %> || <%= link_to 'Edit Lens type', edit_lens_type_orders_path %></p>
+        <p><strong>Package: </strong><%= @order.package_id %> || <%= link_to 'Edit Package type', edit_package_orders_path %></p>
+        <p><strong>Prescription: </strong><%= @order.prescription_id %> || <%= link_to 'Edit Prescription type', edit_prescription_orders_path %></p>
       </span>
     </td>
     <td class="cart-item-price" data-hook="cart_item_price">
