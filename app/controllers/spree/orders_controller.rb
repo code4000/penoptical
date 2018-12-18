@@ -176,6 +176,9 @@ module Spree
       @order = current_order
 
       if @order.update(order_params)
+        puts '!!!!!!!!!!!!!!!!!'
+        puts params.inspect
+        puts '!!!!!!!!!!!!!!!'
         @order.update_attribute(:status, 'finished')
 
         redirect_to cart_path(id: @order.id)
@@ -228,7 +231,9 @@ module Spree
     def order_params
       if params[:order]
         params.require(:order).permit(:vision_id,:lens_id,:package_id,:prescription_id, 
-                                        :address_attributes=>[:id, :firstname, :lastname, :first_name, :last_name, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone, :state_name, :country_iso, :alternative_phone, :company, {:country=>[:iso, :name, :iso3, :iso_name], :state=>[:name, :abbr]}])
+                                        :address_attributes=>[:id, :firstname, :lastname, :first_name, :last_name, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone, :state_name, :country_iso, :alternative_phone, :company, 
+                                          {:country=>[:iso, :name, :iso3, :iso_name], 
+                                            :state=>[:name, :abbr]}])
       else
         {}
       end

@@ -1,5 +1,5 @@
 <%= form_for @order, url: create_lens_type_orders_path do |f| %>
-	<%= f.text_field :lens_id %>
+	<%= f.collection_select(:lens_id, Lens.all, :id, :name) %>
 	
 	<%= f.submit %>
 <% end %>

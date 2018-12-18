@@ -1,5 +1,5 @@
 <%= form_for @order, url: update_vision_type_orders_path do |f| %>
-	<%= f.text_field :vision_id %>
+	<%= f.collection_select(:vision_id, Vision.all, :id, :name) %>
 	
 	<%= f.submit %>
 <% end %>
