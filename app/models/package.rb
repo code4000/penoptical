@@ -1,3 +1,3 @@
 class Package < ApplicationRecord
-	has_many :order
+	has_many :order, dependent: :destroy
 end

@@ -132,9 +132,9 @@ module Spree
 
     ##Custom tables (vision type, lens type, package type and prescription)
 
-    belongs_to :vision
-    belongs_to :lens
-    belongs_to :package
+    belongs_to :vision, dependent: :destroy
+    belongs_to :lens, dependent: :destroy
+    belongs_to :package, dependent: :destroy
 
     def self.find_by_param(value)
       find_by number: value

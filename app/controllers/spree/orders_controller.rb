@@ -230,10 +230,7 @@ module Spree
 
     def order_params
       if params[:order]
-        params.require(:order).permit(:vision_id,:lens_id,:package_id,:prescription_id, 
-                                        :address_attributes=>[:id, :firstname, :lastname, :first_name, :last_name, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone, :state_name, :country_iso, :alternative_phone, :company, 
-                                          {:country=>[:iso, :name, :iso3, :iso_name], 
-                                            :state=>[:name, :abbr]}])
+        params[:order].permit(:vision_id,:lens_id,:package_id,:prescription_id,:coupon_code,:email,:special_instructions,:use_billing,{:bill_address_attributes=>[:id, :firstname, :lastname, :first_name, :last_name, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone, :state_name, :country_iso, :alternative_phone, :company, {:country=>[:iso, :name, :iso3, :iso_name], :state=>[:name, :abbr]}], :ship_address_attributes=>[:id, :firstname, :lastname, :first_name, :last_name, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone, :state_name, :country_iso, :alternative_phone, :company, {:country=>[:iso, :name, :iso3, :iso_name], :state=>[:name, :abbr]}], :payments_attributes=>[:amount, :payment_method_id, :payment_method, {:source_attributes=>[:number, :month, :year, :expiry, :verification_value, :first_name, :last_name, :cc_type, :gateway_customer_profile_id, :gateway_payment_profile_id, :last_digits, :name, :encrypted_data, :existing_card_id, :wallet_payment_source_id, {:address_attributes=>[:id, :firstname, :lastname, :first_name, :last_name, :address1, :address2, :city, :country_id, :state_id, :zipcode, :phone, :state_name, :country_iso, :alternative_phone, :company, {:country=>[:iso, :name, :iso3, :iso_name], :state=>[:name, :abbr]}]}]}], :shipments_attributes=>[:special_instructions, :stock_location_id, :id, :tracking, :selected_shipping_rate_id]},{:line_items_attributes=>[:id, :variant_id, :quantity]})
       else
         {}
       end

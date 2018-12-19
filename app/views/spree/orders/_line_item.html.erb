@@ -19,10 +19,20 @@
       <span class="line-item-description" data-hook="line_item_description">
         <%= line_item_description_text(line_item.description) %>
       
-        <p><strong>Vision type: </strong><%= @order.vision.name %> || <%= link_to 'Edit Vision type', edit_vision_type_orders_path %></p>
-        <p><strong>Lens: </strong><%= @order.lens.name %> || <%= link_to 'Edit Lens type', edit_lens_type_orders_path %></p>
-        <p><strong>Package: </strong><%= @order.package.name %> || <%= link_to 'Edit Package type', edit_package_orders_path %></p>
-        <p><strong>Prescription: </strong><%= @order.prescription_id %> || <%= link_to 'Edit Prescription type', edit_prescription_orders_path %></p>
+        <p><strong>Vision type: </strong><%= @order.vision.name %></p>
+        <p><strong>Price: </strong><%= @order.vision.price %></p>
+        <%= link_to 'Edit Vision type', edit_vision_type_orders_path %>
+        <hr>
+        <p><strong>Lens: </strong><%= @order.lens.name %></p>
+        <p><strong>Price: </strong><%= @order.lens.price %></p>
+        <%= link_to 'Edit Lens type', edit_lens_type_orders_path %>
+        <hr>
+        <p><strong>Package: </strong><%= @order.package.name %></p>
+        <p><strong>Price: </strong><%= @order.package.price %></p>
+        <%= link_to 'Edit Package type', edit_package_orders_path %>
+        <hr>
+        <p><strong>Prescription: </strong><%= @order.prescription_id %></p>
+        <%= link_to 'Edit Prescription type', edit_prescription_orders_path %>
       </span>
     </td>
     <td class="cart-item-price" data-hook="cart_item_price">
