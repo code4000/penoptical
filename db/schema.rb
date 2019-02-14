@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 2018_12_19_161015) do
 
   create_table "lens", force: :cascade do |t|
     t.string "name"
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "price"
   end
 
   create_table "packages", force: :cascade do |t|
