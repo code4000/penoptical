@@ -21,4 +21,6 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Deploy to staging on Heroku: https://penoptical-staging.herokuapp.com/
+* Dashboard is here: https://dashboard.heroku.com/pipelines/f51ace4a-4046-4c4d-8d88-c6569daa576d
+* Staging automatically deployed when Github commits
